@@ -1,37 +1,68 @@
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes
-from main import get_db, read_user
+from models import User
+from database import SessionLocal
 
 # Токен вашего бота
 TOKEN = "7217254061:AAEzRMDI0CVS09eAydyRyGMbJjzAZqAGpg4"
 
+# Функция для получения сессии базы данных
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
 # Команда /start
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text('Привет! Я твой бот.')
+    # Получаем данные о пользователе из Telegram
+    user = update.message.from_user
+    telegram_id = user.id
+    username = user.username
+    first_name = user.first_name
+    last_name = user.last_name
 
-# Команда /get_user
-async def get_user_info(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    try:
-        user_id = int(context.args[0])
-        db = next(get_db())
-        user = read_user(user_id, db)
-        if user:
-            await update.message.reply_text(f"User: {user.username}, Email: {user.email}")
-        else:
-            await update.message.reply_text("User not found")
-    except (IndexError, ValueError):
-        await update.message.reply_text("Usage: /get_user <user_id>")
+    # Получаем сессию базы данных
+    db = next(get_db())
 
+    # Проверяем, зарегистрирован ли пользователь уже
+    existing_user = db.query(User).filter(User.telegram_id == telegram_id).first()
+    if existing_user:
+        await update.message.reply_text(
+            f"Привет, {first_name}! Ты уже зарегистрирован.\n"
+            f"Твой ID: {existing_user.id}\n"
+            f"Username: {existing_user.username}"
+        )
+        return
+
+    # Создаем нового пользователя
+    new_user = User(
+        telegram_id=telegram_id,
+        username=username,
+        first_name=first_name,
+        last_name=last_name
+    )
+    db.add(new_user)
+    db.commit()
+    db.refresh(new_user)
+
+    # Отправляем подтверждение
+    await update.message.reply_text(
+        f"Привет, {first_name}! Ты успешно зарегистрирован.\n"
+        f"Твой ID: {new_user.id}\n"
+        f"Username: {new_user.username}"
+    )
+
+# Запуск бота
 def main():
-    # Создаем приложение и передаем токен
     application = Application.builder().token(TOKEN).build()
 
-    # Регистрируем обработчики команд
+    # Регистрируем команды
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("get_user", get_user_info))
 
     # Запускаем бота
     application.run_polling()
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
