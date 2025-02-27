@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-white text-gray-900;
+}
+
+.gradient-card {
+  @apply bg-gradient-to-r from-green-500 to-emerald-400;
+}

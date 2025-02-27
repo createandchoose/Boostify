@@ -1,31 +1,44 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import Profile from '../views/Profile.vue'
-import Shop from '../views/Shop.vue'
-import Games from '../views/Games.vue'
+import MainLayout from '../components/MainLayout.vue'
+import HomeView from '../components/HomeView.vue'
+import ProfileView from '../components/ProfileView.vue'
+import LeaderboardView from '../components/LeaderboardView.vue'
+import MarketView from '../components/MarketView.vue'
+import TasksView from '../components/TasksView.vue'
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/profile',
-      name: 'Profile',
-      component: Profile
-    },
-    {
-      path: '/shop',
-      name: 'Shop',
-      component: Shop
-    },
-    {
-      path: '/games',
-      name: 'Games',
-      component: Games
+      component: MainLayout,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: HomeView
+        },
+        {
+          path: 'profile',
+          name: 'profile',
+          component: ProfileView
+        },
+        {
+          path: 'leaderboard',
+          name: 'leaderboard',
+          component: LeaderboardView
+        },
+        {
+          path: 'market',
+          name: 'market',
+          component: MarketView
+        },
+        {
+          path: 'tasks',
+          name: 'tasks',
+          component: TasksView
+        }
+      ]
     }
   ]
 })
