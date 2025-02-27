@@ -1,0 +1,27 @@
+<svg width="344" height="229" viewBox="0 0 344 229" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_264_13909)">
+<rect width="344" height="229" fill="url(#paint0_radial_264_13909)"/>
+<circle cx="280" cy="176" r="103" fill="white" fill-opacity="0.2"/>
+<circle cx="280" cy="176" r="102.5" stroke="url(#paint1_linear_264_13909)" stroke-opacity="0.4"/>
+<circle cx="302" cy="53" r="103" fill="white" fill-opacity="0.2"/>
+<circle cx="302" cy="53" r="102.5" stroke="url(#paint2_linear_264_13909)" stroke-opacity="0.4"/>
+</g>
+<defs>
+<radialGradient id="paint0_radial_264_13909" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(95.2112 16.9542) rotate(45.4095) scale(267.509 291.563)">
+<stop stop-color="#23C562"/>
+<stop offset="0.553883" stop-color="#77D21C"/>
+<stop offset="1" stop-color="#17DCD0"/>
+</radialGradient>
+<linearGradient id="paint1_linear_264_13909" x1="280" y1="73" x2="280" y2="279" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint2_linear_264_13909" x1="302" y1="-50" x2="302" y2="156" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_264_13909">
+<rect width="344" height="229" fill="white"/>
+</clipPath>
+</defs>
+</svg>

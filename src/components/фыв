@@ -1,0 +1,47 @@
+      <div class="flex gap-2 mb-6">
+        <button 
+          v-for="tab in tabs" 
+          :key="tab.id"
+          @click="currentTab = tab.id"
+          class="px-4 py-2 rounded-full text-sm"
+          :class="currentTab === tab.id ? 'bg-gray-100 font-medium' : 'text-gray-500'"
+        >
+          {{ tab.name }}
+        </button>
+      </div>
+
+
+
+
+
+            <div class="component-7 elements"><img src="" loading="lazy" width="24" height="24" alt="" class="file-filled">
+                    <div class="text-20">Задания</div>
+                </div>
+            </div>
+            <div class="frame-44726">
+                <div class="component-8 elements"><img src="" loading="lazy" width="24" height="24" alt="" class="file-filled">
+                    <div class="text-20">Лидерборд</div>
+                </div>
+            </div>
+
+
+
+
+
+        <button 
+          v-for="tab in tabs" 
+          :key="tab.id"
+          @click="currentTab = tab.id"
+          class="frame-44725"
+          :class="currentTab === tab.id ? 'frame-44726' : ''"
+        >
+          {{ tab.name }}
+        </button>
+
+
+
+                <div class="frame-44725">
+            <div class="component-7 elements"><img src="" loading="lazy" width="24" height="24" alt="" class="file-filled">
+                <div class="text-20">Задания</div>
+            </div>
+        </div>
